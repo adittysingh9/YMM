@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ye Mera Mann — It is not a podcast. It is a Mann Movement.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Noto+Serif+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --saffron: #E8773A;
+    --saffron-light: #F4A46A;
+    --saffron-glow: rgba(232, 119, 58, 0.15);
+    --cream: #FAF6F0;
+    --cream-warm: #F5EDE0;
+    --ink: #1A1410;
+    --ink-mid: #3D2E22;
+    --ink-soft: #6B5A4E;
+    --dusk: #2C1F14;
+    --gold: #C9922A;
+    --gold-light: #E8C46A;
+    --mist: rgba(250, 246, 240, 0.06);
+    --border: rgba(232, 119, 58, 0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor — heart */
+  .cursor {
+    width: 28px; height: 28px;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform-origin: center center;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .cursor svg {
+    width: 100%; height: 100%;
+    fill: var(--saffron);
+    filter: drop-shadow(0 2px 6px rgba(232,119,58,0.5));
+    animation: heart-beat 1.8s ease-in-out infinite;
+  }
+  @keyframes heart-beat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.18); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.1); }
+    56% { transform: scale(1); }
+  }
+  .cursor-ring {
+    width: 44px; height: 44px;
+    border: 1.5px solid rgba(232,119,58,0.35);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.15s ease;
+    opacity: 0.5;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250, 246, 240, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    padding: 14px 48px;
+    background: rgba(250, 246, 240, 0.97);
+  }
+  .nav-logo {
+    display: flex; align-items: center;
+    text-decoration: none; height: 48px;
+  }
+  .nav-logo img {
+    height: 48px; width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .nav-logo .logo-fallback {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 500;
+    color: var(--ink); letter-spacing: -0.02em;
+    display: none;
+  }
+  .nav-logo .logo-fallback span { color: var(--saffron); }
+  .nav-logo img.broken { display: none; }
+  .nav-logo img.broken ~ .logo-fallback { display: block; }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--saffron); }
+  .nav-cta {
+    background: var(--saffron); color: white;
+    padding: 10px 22px; border-radius: 2px;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    background: var(--dusk);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 120px 48px 80px;
+  }
+
+  /* Grain overlay */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Ambient light pools */
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-glow-1 {
+    width: 600px; height: 600px;
+    top: -200px; right: -100px;
+    background: radial-gradient(circle, rgba(232,119,58,0.12) 0%, transparent 70%);
+  }
+  .hero-glow-2 {
+    width: 400px; height: 400px;
+    bottom: -100px; left: 5%;
+    background: radial-gradient(circle, rgba(201,146,42,0.08) 0%, transparent 70%);
+  }
+
+  /* Sound wave SVG */
+  .soundwave {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 120px; z-index: 2;
+    opacity: 0.3;
+  }
+  .soundwave path {
+    stroke: var(--saffron);
+    stroke-width: 1.5;
+    fill: none;
+    animation: wave-drift 8s ease-in-out infinite;
+  }
+  .soundwave path:nth-child(2) { animation-delay: -2s; opacity: 0.5; }
+  .soundwave path:nth-child(3) { animation-delay: -4s; opacity: 0.3; }
+
+  @keyframes wave-drift {
+    0%, 100% { d: path("M0,60 C80,30 160,90 240,60 C320,30 400,90 480,60 C560,30 640,90 720,60 C800,30 880,90 960,60 C1040,30 1120,90 1200,60 C1280,30 1360,90 1440,60 L1440,120 L0,120 Z"); }
+    50% { d: path("M0,60 C80,90 160,30 240,60 C320,90 400,30 480,60 C560,90 640,30 720,60 C800,90 880,30 960,60 C1040,90 1120,30 1200,60 C1280,90 1360,30 1440,60 L1440,120 L0,120 Z"); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 3;
+    text-align: center; max-width: 820px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--saffron-light); margin-bottom: 32px;
+    opacity: 0; animation: fade-up 0.9s 0.2s ease forwards;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 400; line-height: 1.1;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    opacity: 0; animation: fade-up 0.9s 0.4s ease forwards;
+  }
+  .hero-headline em {
+    font-style: italic; color: var(--saffron-light);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem; font-weight: 300; line-height: 1.7;
+    color: rgba(250, 246, 240, 0.65);
+    max-width: 520px; margin: 0 auto 52px;
+    opacity: 0; animation: fade-up 0.9s 0.6s ease forwards;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fade-up 0.9s 0.8s ease forwards;
+  }
+
+  .btn-primary {
+    background: var(--saffron); color: white;
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.25s ease;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .btn-primary:hover { background: #D4682A; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,119,58,0.4); }
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-outline {
+    border: 1.5px solid rgba(250,246,240,0.3); color: var(--cream);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; font-weight: 400;
+    transition: all 0.25s ease;
+  }
+  .btn-outline:hover { border-color: var(--saffron); color: var(--saffron); transform: translateY(-2px); }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Sections */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--saffron); margin-bottom: 20px; display: block;
+  }
+
+  .section-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400; line-height: 1.15;
+    color: var(--ink); letter-spacing: -0.02em;
+    max-width: 640px;
+  }
+
+  .section-body {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.85;
+    color: var(--ink-soft); max-width: 560px;
+  }
+
+  /* What is YMM */
+  .what-section {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .what-left { }
+  .what-right { }
+  .what-body { margin-top: 32px; }
+  .what-body p + p { margin-top: 20px; }
+  .what-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-style: italic;
+    color: var(--saffron); margin: 32px 0;
+    padding-left: 24px;
+    border-left: 2px solid var(--saffron);
+    line-height: 1.6;
+  }
+
+  .pillars {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+    margin-top: 20px;
+  }
+  .pillar {
+    background: var(--cream-warm);
+    padding: 32px 24px;
+    transition: background 0.2s;
+  }
+  .pillar:hover { background: #EDE5D8; }
+  .pillar-icon { font-size: 1.5rem; margin-bottom: 16px; }
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 500;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .pillar-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.6; }
+
+  /* Mann Space */
+  .mann-section {
+    background: var(--dusk);
+    position: relative; overflow: hidden;
+  }
+  .mann-section::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,119,58,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .mann-header { margin-bottom: 56px; }
+  .mann-header .section-headline { color: var(--cream); max-width: 500px; }
+  .mann-header .section-label { color: var(--saffron-light); }
+  .mann-sub {
+    color: rgba(250,246,240,0.5); font-size: 1rem;
+    margin-top: 16px; font-weight: 300;
+  }
+
+  .mann-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
+  }
+  .mann-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,119,58,0.12);
+    padding: 48px 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .mann-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(232,119,58,0.06), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .mann-card:hover { background: rgba(255,255,255,0.07); }
+  .mann-card:hover::before { opacity: 1; }
+  .mann-card:hover .mann-card-title { color: var(--saffron-light); }
+
+  .mann-tag {
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--saffron); margin-bottom: 20px; display: block;
+  }
+  .mann-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 400;
+    color: var(--cream); margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+  .mann-hindi {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 0.95rem; color: rgba(250,246,240,0.35);
+    margin-bottom: 24px; display: block;
+  }
+  .mann-card-desc {
+    font-size: 0.9rem; color: rgba(250,246,240,0.55);
+    line-height: 1.75; font-weight: 300;
+  }
+  .mann-card-open {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 0.95rem;
+    color: var(--saffron-light); margin-bottom: 20px;
+    display: block;
+  }
+
+  /* Voices */
+  .voices-section { background: var(--cream-warm); }
+  .voices-header { margin-bottom: 56px; max-width: 640px; }
+  .voices-header .section-headline { margin-bottom: 20px; }
+
+  .voices-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px;
+  }
+  .voice-card {
+    background: var(--cream);
+    padding: 40px 32px;
+    border-top: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .voice-card:hover { border-top-color: var(--saffron); transform: translateY(-4px); }
+  .voice-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--saffron); margin-bottom: 24px; display: block;
+  }
+  .voice-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--cream-warm);
+    border: 2px solid var(--border);
+    margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .voice-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1rem;
+    color: var(--ink-mid); line-height: 1.6;
+  }
+
+  /* Episode */
+  .episode-section { background: var(--cream); }
+  .episode-inner {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center;
+  }
+  .episode-card {
+    background: var(--dusk);
+    padding: 56px 48px;
+    position: relative; overflow: hidden;
+  }
+  .episode-card::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232,119,58,0.12), transparent 70%);
+  }
+  .episode-label {
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--saffron-light); margin-bottom: 20px; display: block;
+  }
+  .episode-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 400; line-height: 1.25;
+    color: var(--cream); margin-bottom: 24px;
+  }
+  .episode-pull {
+    font-style: italic; font-size: 0.95rem;
+    color: rgba(250,246,240,0.55); line-height: 1.7;
+    border-left: 2px solid var(--saffron);
+    padding-left: 20px; margin-bottom: 36px;
+  }
+  .episode-meta {
+    font-size: 0.78rem; letter-spacing: 0.08em;
+    color: rgba(250,246,240,0.35);
+    margin-bottom: 32px;
+  }
+  .episode-right { }
+  .episode-right .section-headline { margin-bottom: 24px; }
+  .episode-right .section-body { margin-bottom: 36px; }
+
+  /* Community */
+  .community-section { background: var(--cream-warm); }
+  .community-header { margin-bottom: 56px; }
+  .stories-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
+    margin-bottom: 48px;
+  }
+  .story-card {
+    background: var(--cream);
+    padding: 40px 36px;
+    position: relative;
+    transition: box-shadow 0.3s;
+  }
+  .story-card:hover { box-shadow: 0 20px 60px rgba(26,20,16,0.08); }
+  .story-card::before {
+    content: '\201C';
+    position: absolute; top: 24px; left: 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; color: var(--saffron); opacity: 0.2;
+    line-height: 1;
+  }
+  .story-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.05rem;
+    color: var(--ink-mid); line-height: 1.7;
+    position: relative; z-index: 1;
+    padding-top: 20px;
+  }
+  .community-cta {
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+  }
+
+  /* Movement / Mission */
+  .movement-section {
+    background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  .movement-section::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E8773A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+  .movement-inner {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start;
+  }
+  .movement-left { }
+  .movement-left .section-headline { color: var(--cream); margin-bottom: 32px; }
+  .manifesto {
+    list-style: none;
+    border-top: 1px solid rgba(232,119,58,0.2);
+  }
+  .manifesto li {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(232,119,58,0.1);
+    font-size: 0.95rem; color: rgba(250,246,240,0.6);
+    line-height: 1.65; font-weight: 300;
+    padding-left: 20px; position: relative;
+  }
+  .manifesto li::before {
+    content: '–';
+    position: absolute; left: 0;
+    color: var(--saffron); font-weight: 400;
+  }
+  .movement-right { }
+  .about-bio {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,119,58,0.15);
+    padding: 48px;
+  }
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .about-role {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--saffron); margin-bottom: 28px; display: block;
+  }
+  .about-text {
+    font-size: 0.95rem; color: rgba(250,246,240,0.55);
+    line-height: 1.85; font-weight: 300;
+  }
+  .about-text p + p { margin-top: 16px; }
+
+  /* Share your Mann */
+  .share-section {
+    background: var(--cream);
+    text-align: center;
+  }
+  .share-inner { max-width: 680px; margin: 0 auto; }
+  .share-inner .section-headline { margin: 0 auto 16px; }
+  .share-safety {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1rem; color: var(--saffron);
+    margin-bottom: 16px; display: block;
+  }
+  .share-desc {
+    font-size: 1rem; color: var(--ink-soft);
+    line-height: 1.7; margin-bottom: 48px;
+  }
+  .share-form {
+    background: var(--cream-warm);
+    padding: 48px; text-align: left;
+  }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-bottom: 20px;
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 8px; display: block;
+  }
+  .form-input, .form-textarea, .form-select {
+    width: 100%; padding: 14px 16px;
+    background: var(--cream); border: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--saffron);
+  }
+  .form-textarea { min-height: 120px; resize: vertical; }
+  .mood-selector {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .mood-btn {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    background: transparent; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; color: var(--ink-soft);
+    transition: all 0.2s;
+  }
+  .mood-btn:hover, .mood-btn.active {
+    background: var(--saffron); border-color: var(--saffron);
+    color: white;
+  }
+  .submit-btn {
+    width: 100%; padding: 18px;
+    background: var(--saffron); color: white;
+    border: none; cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-style: italic;
+    letter-spacing: 0.04em;
+    transition: all 0.25s;
+    margin-top: 8px;
+  }
+  .submit-btn:hover { background: #D4682A; }
+  .submit-btn[id="send-wa-btn"]:hover { background: #1ebe57; }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    padding: 64px 48px 40px;
+  }
+  .footer-inner {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+    margin-bottom: 48px;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--saffron); }
+  .footer-tagline {
+    font-size: 0.85rem; color: rgba(250,246,240,0.35);
+    line-height: 1.6; max-width: 280px;
+    font-style: italic;
+  }
+  .footer-links-title {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--saffron); margin-bottom: 20px; display: block;
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a {
+    font-size: 0.88rem; color: rgba(250,246,240,0.45);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-social {
+    display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap;
+  }
+  .social-btn {
+    padding: 8px 18px;
+    border: 1px solid rgba(232,119,58,0.25);
+    color: rgba(250,246,240,0.45);
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-btn:hover {
+    border-color: var(--saffron); color: var(--saffron);
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(232,119,58,0.1);
+    padding-top: 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copy {
+    font-size: 0.78rem; color: rgba(250,246,240,0.2);
+  }
+  .footer-made {
+    font-size: 0.78rem; color: rgba(250,246,240,0.2);
+    font-style: italic;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    nav { padding: 18px 28px; }
+    .nav-links { display: none; }
+    section { padding: 72px 28px; }
+    .what-section { grid-template-columns: 1fr; gap: 48px; }
+    .voices-grid { grid-template-columns: repeat(2, 1fr); }
+    .episode-inner { grid-template-columns: 1fr; gap: 40px; }
+    .movement-inner { grid-template-columns: 1fr; gap: 56px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .mann-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 100px 24px 80px; }
+    section { padding: 64px 24px; }
+    .voices-grid { grid-template-columns: 1fr; }
+    .stories-grid { grid-template-columns: 1fr; }
+    .mann-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+
+  /* Decorative horizontal rule */
+  .ornament {
+    text-align: center; color: var(--saffron);
+    font-size: 0.9rem; letter-spacing: 0.5em;
+    margin: 48px 0; opacity: 0.4;
+  }
+
+  /* Banner */
+  .banner {
+    background: var(--saffron); padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .banner-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.1rem; color: white;
+  }
+  .banner-btns { display: flex; gap: 12px; }
+  .banner-btn {
+    padding: 10px 24px; background: white; color: var(--saffron);
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .banner-btn:hover { background: var(--cream); }
+  .banner-btn-outline {
+    padding: 10px 24px; border: 1.5px solid rgba(255,255,255,0.6);
+    color: white; font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none; font-weight: 400;
+    transition: all 0.2s;
+  }
+  .banner-btn-outline:hover { border-color: white; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 32 29.6" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16,29.6 C16,29.6 0,19 0,8 C0,3.6 3.6,0 8,0 C11,0 13.7,1.6 15.3,4 C15.6,4.5 16.4,4.5 16.7,4 C18.3,1.6 21,0 24,0 C28.4,0 32,3.6 32,8 C32,19 16,29.6 16,29.6 Z"/>
+  </svg>
+</div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="Ye Mera Mann  logo.png" alt="Ye Mera Mann" id="nav-logo-img" onerror="this.classList.add('broken')">
+    <span class="logo-fallback">Ye Mera <span>Mann</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#movement">The Movement</a></li>
+    <li><a href="#voices">Voices</a></li>
+    <li><a href="#mann-space">Mann Space</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="https://youtube.com/@YeMeraMann" target="_blank" class="nav-cta">Subscribe on YouTube</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">By Aditya Singh · A Mann Movement</p>
+    <h1 class="hero-headline">
+      It is not a podcast.<br>
+      It is a <em>Mann Movement.</em>
+    </h1>
+    <p class="hero-sub">For everyone who has ever felt something they could not say out loud.</p>
+    <div class="hero-buttons">
+      <a href="#movement" class="btn-primary">Enter the Movement</a>
+      <a href="https://youtube.com/@YeMeraMann" target="_blank" class="btn-outline">Watch on YouTube</a>
+    </div>
+  </div>
+
+  <svg class="soundwave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,60 C80,30 160,90 240,60 C320,30 400,90 480,60 C560,30 640,90 720,60 C800,30 880,90 960,60 C1040,30 1120,90 1200,60 C1280,30 1360,90 1440,60 L1440,120 L0,120 Z"/>
+    <path d="M0,60 C80,80 160,40 240,60 C320,80 400,40 480,60 C560,80 640,40 720,60 C800,80 880,40 960,60 C1040,80 1120,40 1200,60 C1280,80 1360,40 1440,60 L1440,120 L0,120 Z"/>
+    <path d="M0,60 C100,50 200,70 300,60 C400,50 500,70 600,60 C700,50 800,70 900,60 C1000,50 1100,70 1200,60 C1300,50 1400,70 1440,60 L1440,120 L0,120 Z"/>
+  </svg>
+</section>
+
+<!-- WHAT IS YE MERA MANN -->
+<section class="what-section" id="movement">
+  <div class="what-left reveal">
+    <span class="section-label">What is this place</span>
+    <h2 class="section-headline">A home for the feeling you cannot name.</h2>
+
+    <div class="what-body">
+      <p class="section-body">Every day, people wake up carrying something they cannot name. It is not always sadness. It is not always stress. It is something quieter — the feeling of a life moving too fast, with no space to slow down and actually feel it.</p>
+
+      <div class="what-highlight">"It is a place where ancient wisdom meets modern honesty."</div>
+
+      <p class="section-body">Where voices that have spent lifetimes understanding the human spirit share space with voices that are simply trying to get through the week. This is not a self-help platform. It is not a spiritual channel. It is not a mental health app.</p>
+      <p class="section-body" style="margin-top:16px;">It is a <strong>Mann Movement</strong> — and it belongs to everyone who has ever felt something deeply and had nowhere to take it.</p>
+    </div>
+  </div>
+
+  <div class="what-right reveal reveal-delay-2">
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🎙</div>
+        <div class="pillar-title">Voices</div>
+        <div class="pillar-desc">Wisdom voices, modern advocates, and real people — all in one place.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌿</div>
+        <div class="pillar-title">Community</div>
+        <div class="pillar-desc">Share your story, hear others, belong somewhere that asks nothing of you.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">✊</div>
+        <div class="pillar-title">Advocacy</div>
+        <div class="pillar-desc">A platform that stands for emotional literacy as a cultural shift.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+      <a href="#mann-space" class="btn-primary">Explore the Movement</a>
+    </div>
+  </div>
+</section>
+
+<!-- MANN SPACE -->
+<section class="mann-section" id="mann-space">
+  <div class="mann-header reveal">
+    <span class="section-label">The Mann Space · Our USP</span>
+    <h2 class="section-headline">Where is your Mann today?</h2>
+    <p class="mann-sub">Every other platform asks what you want to watch. This one asks how you feel. That is the entire difference.</p>
+  </div>
+
+  <div class="mann-grid">
+    <div class="mann-card reveal">
+      <span class="mann-tag">Heavy Mann</span>
+      <div class="mann-card-title">Bhaari Mann</div>
+      <span class="mann-hindi">भारी मन</span>
+      <span class="mann-card-open">"You do not have to explain this feeling."</span>
+      <p class="mann-card-desc">Some days the weight has no name. You are not broken. You are not weak. This is for those days — voices that understand, stories from people who came out a little lighter.</p>
+    </div>
+    <div class="mann-card reveal reveal-delay-1">
+      <span class="mann-tag">Confused Mann</span>
+      <div class="mann-card-title">Ulajha Mann</div>
+      <span class="mann-hindi">उलझा मन</span>
+      <span class="mann-card-open">"The right answer is not always the loudest one."</span>
+      <p class="mann-card-desc">Too many voices. No clear answer. Clarity does not come from thinking harder. Sometimes it comes from going quiet — and letting the right voice find you.</p>
+    </div>
+    <div class="mann-card reveal reveal-delay-2">
+      <span class="mann-tag">Peaceful Mann</span>
+      <div class="mann-card-title">Sukoon Waala Mann</div>
+      <span class="mann-hindi">सुकून वाला मन</span>
+      <span class="mann-card-open">"You have found a moment of stillness. Let it go deeper."</span>
+      <p class="mann-card-desc">Do not rush this. Wisdom that does not need urgency. Words that breathe. Stay here a little longer than you planned.</p>
+    </div>
+    <div class="mann-card reveal reveal-delay-3">
+      <span class="mann-tag">Growing Mann</span>
+      <div class="mann-card-title">Badh Raha Hoon</div>
+      <span class="mann-hindi">बढ़ रहा हूँ</span>
+      <span class="mann-card-open">"Something is moving inside you. Trust it."</span>
+      <p class="mann-card-desc">Growth does not always feel like progress. Sometimes it feels like everything shifting at once. Hear from people who stood exactly where you are — and walked forward anyway.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices-section" id="voices">
+  <div class="voices-header reveal">
+    <span class="section-label">Featured Voices</span>
+    <h2 class="section-headline">Voices that will change how you see your Mann.</h2>
+    <p class="section-body" style="margin-top:16px;">Wisdom voices. Modern advocates. Real people. All here. All for one reason.</p>
+  </div>
+
+  <div class="voices-grid">
+    <div class="voice-card reveal">
+      <span class="voice-label">Spiritual Wisdom</span>
+      <div class="voice-avatar">🌸</div>
+      <p class="voice-quote">"The mind that has learned to be still has learned everything worth knowing."</p>
+    </div>
+    <div class="voice-card reveal reveal-delay-1">
+      <span class="voice-label">Mental Wellness Advocate</span>
+      <div class="voice-avatar">💬</div>
+      <p class="voice-quote">"The bravest thing you can do is say — I am not okay. And mean it."</p>
+    </div>
+    <div class="voice-card reveal reveal-delay-2">
+      <span class="voice-label">Real Story</span>
+      <div class="voice-avatar">🕯️</div>
+      <p class="voice-quote">"I thought I was the only one carrying this. Turns out the world is full of us."</p>
+    </div>
+    <div class="voice-card reveal reveal-delay-3">
+      <span class="voice-label">Anchor · Voice of the Movement</span>
+      <div class="voice-avatar">🎙</div>
+      <p class="voice-quote">"I spent 18 years learning to speak. This platform taught me to listen."</p>
+    </div>
+  </div>
+</section>
+
+<!-- EPISODE -->
+<section class="episode-section" id="listen">
+  <div class="episode-inner">
+    <div class="episode-card reveal">
+      <span class="episode-label">This Week on Ye Mera Mann</span>
+      <h3 class="episode-title">The Day I Stopped Running From Myself</h3>
+      <p class="episode-pull">"When you cannot name what you feel, give it time — not more words."</p>
+      <p class="episode-meta">Aditya Singh · 42 mins · YouTube</p>
+      <a href="https://youtube.com/@YeMeraMann" target="_blank" class="btn-primary">Watch Now</a>
+    </div>
+
+    <div class="episode-right reveal reveal-delay-2">
+      <span class="section-label">Every Format. One Subject.</span>
+      <h2 class="section-headline">Find what your Mann needs right now.</h2>
+      <p class="section-body" style="margin-top: 20px; margin-bottom: 32px;">Long conversations. Short clips. Narrated stories. Guided stillness. The platform meets you wherever you are.</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3px; margin-bottom:36px;">
+        <div style="background:var(--cream-warm);padding:20px 24px;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:6px;">Podcast</div>
+          <div style="font-size:0.88rem;color:var(--ink-soft);line-height:1.6;">Full conversations. 30–60 mins. The kind you carry long after.</div>
+        </div>
+        <div style="background:var(--cream-warm);padding:20px 24px;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:6px;">Short Clips</div>
+          <div style="font-size:0.88rem;color:var(--ink-soft);line-height:1.6;">60–90 seconds. One idea. The moment that stops everyone.</div>
+        </div>
+        <div style="background:var(--cream-warm);padding:20px 24px;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:6px;">Narrations</div>
+          <div style="font-size:0.88rem;color:var(--ink-soft);line-height:1.6;">Community stories, read by Aditya. Anonymous. Real.</div>
+        </div>
+        <div style="background:var(--cream-warm);padding:20px 24px;">
+          <div style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--saffron);margin-bottom:6px;">Meditations</div>
+          <div style="font-size:0.88rem;color:var(--ink-soft);line-height:1.6;">Guided stillness. 10–25 mins. Not a performance. A practice.</div>
+        </div>
+      </div>
+
+      <a href="https://youtube.com/@YeMeraMann" target="_blank" class="btn-primary">Listen & Watch</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community-section" id="community">
+  <div class="community-header reveal">
+    <span class="section-label">Community</span>
+    <h2 class="section-headline">You are not the only one who feels this way.</h2>
+  </div>
+
+  <div class="stories-grid">
+    <div class="story-card reveal">
+      <p class="story-text">I was the person everyone came to for advice. No one knew I was falling apart inside.</p>
+    </div>
+    <div class="story-card reveal reveal-delay-1">
+      <p class="story-text">I stopped pretending I was fine the day I heard someone else say exactly what I had been feeling for years.</p>
+    </div>
+    <div class="story-card reveal reveal-delay-2">
+      <p class="story-text">I did not need someone to fix me. I needed someone to sit with me. I found that here.</p>
+    </div>
+  </div>
+
+  <div class="community-cta reveal">
+    <a href="#share" class="btn-primary">Share Your Story</a>
+    <a href="https://whatsapp.com/channel/0029VbCjbcmDZ4LVv8mba50N" target="_blank" class="btn-outline" style="color:var(--ink);border-color:var(--border);">Join WhatsApp Community</a>
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="banner" id="share-banner">
+  <p class="banner-text">"Something on your mind? Say it here."</p>
+  <div class="banner-btns">
+    <a href="#share" class="banner-btn">Write Your Story</a>
+    <a href="https://wa.me/918800022005" target="_blank" class="banner-btn-outline">Send on WhatsApp</a>
+  </div>
+</div>
+
+<!-- MOVEMENT / MANIFESTO -->
+<section class="movement-section" id="about">
+  <div class="movement-inner">
+    <div class="movement-left reveal">
+      <span class="section-label" style="color:var(--saffron-light);">The Manifesto</span>
+      <h2 class="section-headline">"What we believe."</h2>
+
+      <ul class="manifesto" style="margin-top:36px;">
+        <li>We believe every Mann deserves a space that does not rush it toward answers.</li>
+        <li>We believe that ancient wisdom and modern pain are not opposites — they are the same conversation, separated by time.</li>
+        <li>We believe emotional literacy is the next great cultural shift India needs.</li>
+        <li>We believe you do not have to be broken to seek understanding.</li>
+        <li>We believe that every Mann — however heavy, however confused, however quiet — deserves to be heard.</li>
+      </ul>
+
+      <div style="margin-top:48px;">
+        <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(250,246,240,0.4);line-height:1.5;">This is Ye Mera Mann.<br>Not a podcast. A movement.</p>
+      </div>
+    </div>
+
+    <div class="movement-right reveal reveal-delay-2">
+      <div class="about-bio">
+        <h3 class="about-name">Aditya Singh</h3>
+        <span class="about-role">Anchor · Voice of the Movement</span>
+        <div class="about-text">
+          <p>Aditya Singh picked up his first microphone eighteen years ago. He did not know then that those eighteen years would lead here.</p>
+          <p>Across two decades of anchoring, corporate training, and narration, he stood in front of thousands of people. He helped leaders communicate. He gave voice to stories. He sat across from people at their most honest — and learnt that being heard is one of the deepest human needs.</p>
+          <p>Somewhere in the middle of all of it, he noticed something that would not leave him alone.</p>
+          <p style="color:var(--saffron-light);font-style:italic;">People were talking more than ever. And being heard less than ever.</p>
+          <p>The conversations that matter most had no real home. Not in media. Not in the kind of spaces most people actually live in. So he built one. Ye Mera Mann is that home.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:3px;background:rgba(255,255,255,0.03);border:1px solid rgba(232,119,58,0.12);padding:32px 40px;">
+        <span style="font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--saffron);display:block;margin-bottom:16px;">We stand for something beyond content</span>
+        <p style="font-size:0.9rem;color:rgba(250,246,240,0.5);line-height:1.8;font-weight:300;">Ye Mera Mann is not a neutral platform. It believes the Indian Mann deserves more attention, more language, and more space than it is currently given.</p>
+        <a href="mailto:yemeramann5@gmail.com" style="display:inline-block;margin-top:24px;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--saffron);text-decoration:none;border-bottom:1px solid rgba(232,119,58,0.3);padding-bottom:3px;">Partner With Us →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHARE YOUR MANN -->
+<section class="share-section" id="share">
+  <div class="share-inner">
+    <span class="section-label" style="text-align:center;display:block;">Share Your Mann</span>
+    <h2 class="section-headline" style="margin:0 auto 20px;">Something on your mind?<br>Say it here.</h2>
+    <span class="share-safety">Yahan aap safe hain.</span>
+    <p class="share-desc">No name required. No account needed. No judgment — ever. Your truth, in your words.<br>Send it to us on Email or WhatsApp — whichever feels easier.</p>
+
+    <div class="share-form reveal">
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Your name (optional)</label>
+          <input type="text" id="f-name" class="form-input" placeholder="Any name, or nothing at all">
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Your city (optional)</label>
+          <input type="text" id="f-city" class="form-input" placeholder="Where are you writing from?">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">How is your Mann today?</label>
+        <div class="mood-selector" id="mood-selector">
+          <button class="mood-btn" onclick="selectMood(this)">Bhaari · Heavy</button>
+          <button class="mood-btn" onclick="selectMood(this)">Ulajha · Confused</button>
+          <button class="mood-btn" onclick="selectMood(this)">Sukoon · Peaceful</button>
+          <button class="mood-btn" onclick="selectMood(this)">Badh Raha Hoon · Growing</button>
+          <button class="mood-btn" onclick="selectMood(this)">Just Here</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Write your Mann (no word limit)</label>
+        <textarea id="f-story" class="form-textarea" rows="6" placeholder="No right way to say it. Just what is there."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Can we share this?</label>
+        <select id="f-share" class="form-select">
+          <option value="With my name and city">With my name and city</option>
+          <option value="Anonymously">Anonymously</option>
+          <option value="Private only — just for the team to read">Private only — just for the team to read</option>
+        </select>
+      </div>
+
+      <!-- Submit options -->
+      <div style="border-top:1px solid var(--border);padding-top:28px;margin-top:8px;">
+        <p style="font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px;">Choose how to send it →</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="submit-btn" id="send-email-btn" onclick="sendViaEmail()" style="flex:1;min-width:220px;">
+            ✉ &nbsp;Send via Email
+          </button>
+          <button class="submit-btn" id="send-wa-btn" onclick="sendViaWhatsApp()" style="flex:1;min-width:220px;background:#25D366;">
+            💬 &nbsp;Send via WhatsApp
+          </button>
+        </div>
+        <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:16px;line-height:1.6;opacity:0.7;">
+          Clicking either button will open your device's default Email or WhatsApp app with your message pre-filled — so you can review it before sending.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact strip below the form -->
+    <div style="margin-top:48px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding-top:32px;border-top:1px solid var(--border);">
+      <a href="mailto:yemeramann5@gmail.com" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-soft);font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='var(--saffron)'" onmouseout="this.style.color='var(--ink-soft)'">
+        <span style="width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;">✉</span>
+        yemeramann5@gmail.com
+      </a>
+      <a href="https://wa.me/918800022005" target="_blank" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-soft);font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='var(--ink-soft)'">
+        <span style="width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;">💬</span>
+        +91 88000-22005
+      </a>
+      <a href="https://www.instagram.com/yemeramann" target="_blank" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-soft);font-size:0.88rem;transition:color 0.2s;" onmouseover="this.style.color='var(--saffron)'" onmouseout="this.style.color='var(--ink-soft)'">
+        <span style="width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;">📸</span>
+        @yemeramann
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Ye Mera <span>Mann</span></div>
+      <p class="footer-tagline">It is not a podcast. It is a Mann Movement.<br>Built with voice. Held with care.</p>
+      <div class="footer-social">
+        <a href="https://youtube.com/@YeMeraMann" target="_blank" class="social-btn">YouTube</a>
+        <a href="https://www.instagram.com/yemeramann" target="_blank" class="social-btn">Instagram</a>
+        <a href="https://whatsapp.com/channel/0029VbCjbcmDZ4LVv8mba50N" target="_blank" class="social-btn">WhatsApp</a>
+        <a href="mailto:yemeramann5@gmail.com" class="social-btn">Email</a>
+      </div>
+      <div style="margin-top:20px;">
+        <a href="tel:+918800022005" style="font-size:0.82rem;color:rgba(250,246,240,0.35);text-decoration:none;display:block;margin-bottom:6px;transition:color 0.2s;" onmouseover="this.style.color='var(--saffron)'" onmouseout="this.style.color='rgba(250,246,240,0.35)'">📞 +91 88000-22005</a>
+        <a href="mailto:yemeramann5@gmail.com" style="font-size:0.82rem;color:rgba(250,246,240,0.35);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--saffron)'" onmouseout="this.style.color='rgba(250,246,240,0.35)'">✉ yemeramann5@gmail.com</a>
+      </div>
+    </div>
+
+    <div>
+      <span class="footer-links-title">Navigate</span>
+      <ul class="footer-links">
+        <li><a href="#movement">The Movement</a></li>
+        <li><a href="#mann-space">Mann Space</a></li>
+        <li><a href="#voices">Voices</a></li>
+        <li><a href="#listen">Listen & Watch</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <span class="footer-links-title">Connect</span>
+      <ul class="footer-links">
+        <li><a href="#share">Share Your Story</a></li>
+        <li><a href="https://whatsapp.com/channel/0029VbCjbcmDZ4LVv8mba50N" target="_blank">Join WhatsApp Community</a></li>
+        <li><a href="#">Upcoming Events</a></li>
+        <li><a href="mailto:yemeramann5@gmail.com">Partner With Us</a></li>
+        <li><a href="mailto:yemeramann5@gmail.com?subject=Speaking%20Enquiry">Speaking Enquiries</a></li>
+        <li><a href="tel:+918800022005">+91 88000-22005</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Ye Mera Mann · By Aditya Singh</p>
+    <p class="footer-made">Every Mann deserves to be heard.</p>
+  </div>
+</footer>
+
+<script>
+  // Logo error fallback — if logo file not found, show text
+  const logoImg = document.getElementById('nav-logo-img');
+  if (logoImg) {
+    logoImg.addEventListener('error', () => {
+      logoImg.style.display = 'none';
+      document.querySelector('.logo-fallback').style.display = 'block';
+    });
+    // Also check if already broken (cached error)
+    if (!logoImg.complete || logoImg.naturalWidth === 0) {
+      logoImg.style.display = 'none';
+      document.querySelector('.logo-fallback').style.display = 'block';
+    }
+  }
+
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.transform = `translate(${mouseX - 14}px, ${mouseY - 14}px)`;
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.transform = `translate(${ringX - 22}px, ${ringY - 22}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform += ' scale(1.8)';
+      ring.style.opacity = '0.2';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Mood selector — single select
+  let selectedMood = '';
+  function selectMood(btn) {
+    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedMood = btn.textContent.trim();
+  }
+
+  // Build message from form fields
+  function buildMessage() {
+    const name = document.getElementById('f-name').value.trim();
+    const city = document.getElementById('f-city').value.trim();
+    const story = document.getElementById('f-story').value.trim();
+    const share = document.getElementById('f-share').value;
+
+    if (!story) {
+      alert('Please write something in the Mann box before sending.');
+      return null;
+    }
+
+    let msg = 'Ye Mera Mann — Apna Mann Bheja\n\n';
+    if (name) msg += `Name: ${name}\n`;
+    if (city) msg += `City: ${city}\n`;
+    if (selectedMood) msg += `Mood: ${selectedMood}\n`;
+    msg += `Sharing preference: ${share}\n\n`;
+    msg += `---\n${story}\n---`;
+    return msg;
+  }
+
+  function sendViaEmail() {
+    const msg = buildMessage();
+    if (!msg) return;
+    const subject = encodeURIComponent('Apna Mann Bheja — Ye Mera Mann');
+    const body = encodeURIComponent(msg);
+    window.location.href = `mailto:yemeramann5@gmail.com?subject=${subject}&body=${body}`;
+  }
+
+  function sendViaWhatsApp() {
+    const msg = buildMessage();
+    if (!msg) return;
+    const encoded = encodeURIComponent(msg);
+    window.open(`https://wa.me/918800022005?text=${encoded}`, '_blank');
+  }
+
+  // Breathing soundwave animation with JS path morphing fallback
+  // CSS animation handles it via @keyframes wave-drift
+</script>
+</body>
+</html>
