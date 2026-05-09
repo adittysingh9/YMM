@@ -749,135 +749,10 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
-  /* ═══════════════════════════════════════════
-     HAMBURGER MENU
-  ═══════════════════════════════════════════ */
-  .hamburger {
-    display: none;
-    flex-direction: column; justify-content: center; gap: 5px;
-    width: 40px; height: 40px; background: none; border: none;
-    cursor: pointer; padding: 4px; z-index: 201; flex-shrink: 0;
-  }
-  .hamburger span {
-    display: block; width: 24px; height: 2px;
-    background: var(--ink); border-radius: 2px;
-    transition: all 0.3s ease; transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  /* Mobile nav drawer */
-  .mobile-drawer {
-    display: none;
-    position: fixed; inset: 0; z-index: 200;
-    pointer-events: none;
-  }
-  .mobile-drawer.open { pointer-events: all; }
-
-  .drawer-overlay {
-    position: absolute; inset: 0;
-    background: rgba(26,20,16,0.55);
-    backdrop-filter: blur(4px);
-    opacity: 0; transition: opacity 0.35s ease;
-  }
-  .mobile-drawer.open .drawer-overlay { opacity: 1; }
-
-  .drawer-panel {
-    position: absolute; top: 0; right: 0;
-    width: min(320px, 85vw); height: 100%;
-    background: var(--dusk);
-    transform: translateX(100%);
-    transition: transform 0.38s cubic-bezier(0.23,1,0.32,1);
-    display: flex; flex-direction: column;
-    overflow-y: auto;
-    padding: 88px 32px 40px;
-  }
-  .mobile-drawer.open .drawer-panel { transform: translateX(0); }
-
-  .drawer-nav { list-style: none; margin-bottom: 40px; }
-  .drawer-nav li { border-bottom: 1px solid rgba(232,119,58,0.1); }
-  .drawer-nav a {
-    display: block; padding: 18px 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem; font-weight: 400;
-    color: rgba(250,246,240,0.8);
-    text-decoration: none; letter-spacing: -0.01em;
-    transition: color 0.2s, padding-left 0.2s;
-  }
-  .drawer-nav a:hover, .drawer-nav a:active { color: var(--saffron); padding-left: 8px; }
-
-  .drawer-social {
-    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px;
-  }
-  .drawer-contact { display: flex; flex-direction: column; gap: 4px; }
-  .drawer-contact a {
-    font-size: 0.82rem; color: rgba(250,246,240,0.4);
-    text-decoration: none; transition: color 0.2s;
-    display: flex; align-items: center; gap: 8px; padding: 6px 0;
-  }
-  .drawer-contact a:hover { color: var(--saffron); }
-  .drawer-contact a svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
-
-  .drawer-cta {
-    margin-top: auto; padding-top: 28px;
-    border-top: 1px solid rgba(232,119,58,0.15);
-  }
-  .drawer-cta a {
-    display: block; text-align: center;
-    background: var(--saffron); color: white;
-    padding: 14px; border-radius: 2px;
-    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; font-weight: 500;
-    transition: background 0.2s;
-  }
-  .drawer-cta a:hover { background: #d4682a; }
-
-  /* ═══════════════════════════════════════════
-     MOBILE BOTTOM NAV BAR
-  ═══════════════════════════════════════════ */
-  .mobile-bottom-nav {
-    display: none;
-    position: fixed; bottom: 0; left: 0; right: 0;
-    z-index: 150;
-    background: rgba(44,31,20,0.97);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(232,119,58,0.2);
-    padding: 0 0 env(safe-area-inset-bottom, 0px);
-  }
-  .mbn-inner {
-    display: flex; align-items: stretch;
-    height: 60px;
-  }
-  .mbn-item {
-    flex: 1; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; gap: 3px;
-    text-decoration: none; color: rgba(250,246,240,0.4);
-    font-size: 0.55rem; letter-spacing: 0.06em; text-transform: uppercase;
-    transition: color 0.2s; padding: 8px 2px;
-    border-right: 1px solid rgba(232,119,58,0.08);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .mbn-item:last-child { border-right: none; }
-  .mbn-item svg { width: 20px; height: 20px; fill: currentColor; transition: fill 0.2s; }
-  .mbn-item:hover, .mbn-item:active { color: var(--saffron); }
-  .mbn-item.mbn-active { color: var(--saffron-light); }
-  .mbn-item.mbn-highlight {
-    color: var(--saffron);
-    background: rgba(232,119,58,0.08);
-  }
-
-  /* ═══════════════════════════════════════════
-     RESPONSIVE BREAKPOINTS
-  ═══════════════════════════════════════════ */
-
-  /* Tablet */
+  /* Responsive */
   @media (max-width: 1024px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 18px 28px; }
     .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .mobile-drawer { display: block; }
     section { padding: 72px 28px; }
     .what-section { grid-template-columns: 1fr; gap: 48px; }
     .voices-grid { grid-template-columns: repeat(2, 1fr); }
@@ -885,97 +760,19 @@
     .movement-inner { grid-template-columns: 1fr; gap: 56px; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .mann-grid { grid-template-columns: 1fr 1fr; }
-    .nav-cta { font-size: 0.72rem; padding: 9px 16px; }
   }
-
-  /* Mobile — everything under 640px */
   @media (max-width: 640px) {
-    /* Core spacing */
-    nav { padding: 14px 16px; }
-    .nav-cta { display: none; } /* replaced by drawer CTA */
-    section { padding: 60px 20px; }
-    .hero { padding: 96px 20px 100px; }
-
-    /* Typography scale-down */
-    .hero-headline { font-size: clamp(2rem, 9vw, 3rem); }
-    .section-headline { font-size: clamp(1.6rem, 6vw, 2.2rem); }
-    .hero-sub { font-size: 1rem; }
-
-    /* Hero buttons stack */
-    .hero-buttons { flex-direction: column; align-items: center; gap: 12px; }
-    .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
-
-    /* Grids to single column */
+    .hero { padding: 100px 24px 80px; }
+    section { padding: 64px 24px; }
     .voices-grid { grid-template-columns: 1fr; }
     .stories-grid { grid-template-columns: 1fr; }
     .mann-grid { grid-template-columns: 1fr; }
     .pillars { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-
-    /* What section */
-    .what-section { padding: 60px 20px; }
-    .what-highlight { font-size: 1.1rem; margin: 24px 0; }
-
-    /* Mann cards */
-    .mann-card { padding: 32px 24px; }
-    .mann-card-title { font-size: 1.25rem; }
-
-    /* Voice cards */
-    .voice-card { padding: 28px 24px; }
-
-    /* Episode */
-    .episode-card { padding: 36px 28px; }
-
-    /* Share form */
-    .share-form { padding: 28px 20px; }
-    .submit-btn { font-size: 0.95rem; }
-    .mood-selector { gap: 6px; }
-    .mood-btn { font-size: 0.78rem; padding: 7px 14px; }
-
-    /* Contact strip — stack vertically on mobile */
-    #share .contact-row { min-width: unset; width: 100%; }
-
-    /* Banner */
-    .banner { padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
-    .banner-btns { width: 100%; }
-    .banner-btn, .banner-btn-outline { flex: 1; text-align: center; }
-
-    /* Footer */
-    footer { padding: 48px 20px 32px; padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
-    .footer-logo { font-size: 1.3rem; }
-    .footer-inner { gap: 36px; }
-
-    /* Cursor off on touch */
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
     body { cursor: auto; }
     .cursor, .cursor-ring { display: none; }
-
-    /* About section */
-    .about-bio { padding: 32px 24px; }
-    .movement-inner > div:last-child > div:last-child { padding: 24px; }
-
-    /* Show mobile bottom nav */
-    .mobile-bottom-nav { display: flex; flex-direction: column; }
-  }
-
-  /* Extra small (iPhone SE, Galaxy A series) */
-  @media (max-width: 380px) {
-    nav { padding: 12px 14px; }
-    section { padding: 52px 16px; }
-    .hero { padding: 88px 16px 100px; }
-    .hero-headline { font-size: clamp(1.7rem, 8vw, 2.4rem); }
-    .share-form { padding: 20px 16px; }
-    .mann-card { padding: 28px 18px; }
-    .episode-card { padding: 28px 20px; }
-    .drawer-panel { padding: 80px 24px 32px; }
-    .drawer-nav a { font-size: 1.1rem; }
-  }
-
-  /* Notch / Dynamic Island safe area for iPhone */
-  @supports (padding-top: env(safe-area-inset-top)) {
-    nav { padding-top: max(14px, env(safe-area-inset-top)); }
-    .mobile-bottom-nav { padding-bottom: env(safe-area-inset-bottom, 0px); }
   }
 
   /* Decorative horizontal rule */
@@ -1061,69 +858,6 @@
       <svg width="17" height="17"><use href="#ico-wa"/></svg>
     </a>
     <a href="https://youtube.com/@YeMeraMann" target="_blank" class="nav-cta">Subscribe on YouTube</a>
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- MOBILE SLIDE-IN DRAWER -->
-<div class="mobile-drawer" id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <div class="drawer-overlay" id="drawer-overlay"></div>
-  <div class="drawer-panel">
-    <ul class="drawer-nav">
-      <li><a href="#movement" class="drawer-link">The Movement</a></li>
-      <li><a href="#voices" class="drawer-link">Voices</a></li>
-      <li><a href="#mann-space" class="drawer-link">Mann Space</a></li>
-      <li><a href="#community" class="drawer-link">Community</a></li>
-      <li><a href="#about" class="drawer-link">About</a></li>
-      <li><a href="#share" class="drawer-link">Share Your Story</a></li>
-    </ul>
-    <div class="drawer-social">
-      <a href="https://youtube.com/@YeMeraMann" target="_blank" class="social-icon-btn s-yt" aria-label="YouTube"><svg><use href="#ico-yt"/></svg></a>
-      <a href="https://www.instagram.com/yemeramann" target="_blank" class="social-icon-btn s-ig" aria-label="Instagram"><svg><use href="#ico-ig"/></svg></a>
-      <a href="https://whatsapp.com/channel/0029VbCjbcmDZ4LVv8mba50N" target="_blank" class="social-icon-btn s-wa" aria-label="WhatsApp"><svg><use href="#ico-wa"/></svg></a>
-      <a href="mailto:yemeramann5@gmail.com" class="social-icon-btn s-em" aria-label="Email"><svg><use href="#ico-em"/></svg></a>
-    </div>
-    <div class="drawer-contact">
-      <a href="tel:+918800022005">
-        <svg viewBox="0 0 24 24"><use href="#ico-ph"/></svg>
-        +91 88000-22005
-      </a>
-      <a href="mailto:yemeramann5@gmail.com">
-        <svg viewBox="0 0 24 24"><use href="#ico-em"/></svg>
-        yemeramann5@gmail.com
-      </a>
-    </div>
-    <div class="drawer-cta">
-      <a href="https://youtube.com/@YeMeraMann" target="_blank">Subscribe on YouTube ↗</a>
-    </div>
-  </div>
-</div>
-
-<!-- MOBILE BOTTOM NAV BAR — visible on phones only -->
-<nav class="mobile-bottom-nav" aria-label="Quick navigation">
-  <div class="mbn-inner">
-    <a href="#movement" class="mbn-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="fill:none;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      Movement
-    </a>
-    <a href="#voices" class="mbn-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="fill:none;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Voices
-    </a>
-    <a href="#mann-space" class="mbn-item mbn-highlight">
-      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:22px;height:22px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      Mann
-    </a>
-    <a href="#community" class="mbn-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="fill:none;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      Community
-    </a>
-    <a href="#share" class="mbn-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="fill:none;"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      Share
-    </a>
   </div>
 </nav>
 
@@ -1519,58 +1253,12 @@
   </div>
 
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 Ye Mera Mann · By Aditya Singh</p>
+    <p class="footer-copy">©️ 2025 Ye Mera Mann · By Aditya Singh</p>
     <p class="footer-made">Every Mann deserves to be heard.</p>
   </div>
 </footer>
 
 <script>
-  // ── Hamburger / Mobile Drawer ──
-  const hamburger = document.getElementById('hamburger');
-  const drawer = document.getElementById('mobile-drawer');
-  const overlay = document.getElementById('drawer-overlay');
-
-  function openDrawer() {
-    drawer.classList.add('open');
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeDrawer() {
-    drawer.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  }
-  hamburger.addEventListener('click', () => {
-    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-  });
-  overlay.addEventListener('click', closeDrawer);
-  document.querySelectorAll('.drawer-link').forEach(link => {
-    link.addEventListener('click', closeDrawer);
-  });
-  // Close on Escape key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
-  });
-
-  // ── Active state for mobile bottom nav ──
-  const mbnItems = document.querySelectorAll('.mbn-item');
-  const sections = ['movement','voices','mann-space','community','share'];
-  function updateMbnActive() {
-    let current = '';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 120) current = id;
-    });
-    mbnItems.forEach(item => {
-      const href = item.getAttribute('href').replace('#','');
-      item.classList.toggle('mbn-active', href === current);
-    });
-  }
-  window.addEventListener('scroll', updateMbnActive, { passive: true });
-  updateMbnActive();
-
   // Logo error fallback — if logo file not found, show text
   const logoImg = document.getElementById('nav-logo-img');
   if (logoImg) {
@@ -1680,3 +1368,4 @@
 </script>
 </body>
 </html>
+
